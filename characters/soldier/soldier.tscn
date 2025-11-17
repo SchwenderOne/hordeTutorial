@@ -120,5 +120,5 @@ script = ExtResource("1_soldier")
 [node name="SoldierSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_soldier")
 animation = &"idle"
-scale = Vector2(3, 3)
+scale = Vector2(9, 9)
 offset = Vector2(0, -50)

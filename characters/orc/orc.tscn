@@ -155,5 +155,5 @@ script = ExtResource("1_orc")
 [node name="OrcSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_orc")
 animation = &"idle"
-scale = Vector2(3, 3)
+scale = Vector2(9, 9)
 offset = Vector2(0, -50)
