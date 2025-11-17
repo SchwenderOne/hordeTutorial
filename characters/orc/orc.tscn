@@ -1,0 +1,159 @@
+[gd_scene load_steps=6 format=3 uid="uid://djk8yn2m4hcr"]
+
+[ext_resource type="Script" path="res://characters/orc/orc.gd" id="1_orc"]
+[ext_resource type="Texture2D" path="res://assets/orc/Orc-Idle.png" id="2_idle"]
+[ext_resource type="Texture2D" path="res://assets/orc/Orc-Walk.png" id="3_walk"]
+[ext_resource type="Texture2D" path="res://assets/orc/Orc-Hurt.png" id="4_hurt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_idle_0"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_idle_1"]
+atlas = ExtResource("2_idle")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_idle_2"]
+atlas = ExtResource("2_idle")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_idle_3"]
+atlas = ExtResource("2_idle")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_idle_4"]
+atlas = ExtResource("2_idle")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_idle_5"]
+atlas = ExtResource("2_idle")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_0"]
+atlas = ExtResource("3_walk")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_1"]
+atlas = ExtResource("3_walk")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_2"]
+atlas = ExtResource("3_walk")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_3"]
+atlas = ExtResource("3_walk")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_4"]
+atlas = ExtResource("3_walk")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_5"]
+atlas = ExtResource("3_walk")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_6"]
+atlas = ExtResource("3_walk")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_walk_7"]
+atlas = ExtResource("3_walk")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_hurt_0"]
+atlas = ExtResource("4_hurt")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_hurt_1"]
+atlas = ExtResource("4_hurt")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_hurt_2"]
+atlas = ExtResource("4_hurt")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orc_hurt_3"]
+atlas = ExtResource("4_hurt")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orc"]
+animations = [{
+"frames": [{
+"duration": 0.15,
+"texture": SubResource("AtlasTexture_orc_idle_0")
+}, {
+"duration": 0.15,
+"texture": SubResource("AtlasTexture_orc_idle_1")
+}, {
+"duration": 0.15,
+"texture": SubResource("AtlasTexture_orc_idle_2")
+}, {
+"duration": 0.15,
+"texture": SubResource("AtlasTexture_orc_idle_3")
+}, {
+"duration": 0.15,
+"texture": SubResource("AtlasTexture_orc_idle_4")
+}, {
+"duration": 0.15,
+"texture": SubResource("AtlasTexture_orc_idle_5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_0")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_1")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_2")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_3")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_4")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_5")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_6")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_orc_walk_7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.12,
+"texture": SubResource("AtlasTexture_orc_hurt_0")
+}, {
+"duration": 0.12,
+"texture": SubResource("AtlasTexture_orc_hurt_1")
+}, {
+"duration": 0.12,
+"texture": SubResource("AtlasTexture_orc_hurt_2")
+}, {
+"duration": 0.12,
+"texture": SubResource("AtlasTexture_orc_hurt_3")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 1.0
+}]
+
+[node name="Orc" type="Node2D"]
+script = ExtResource("1_orc")
+
+[node name="OrcSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_orc")
+animation = &"idle"
+scale = Vector2(3, 3)
+offset = Vector2(0, -50)

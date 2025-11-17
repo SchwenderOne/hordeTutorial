@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://pc0uqrlw2qg"]
+
+[ext_resource type="Script" path="res://characters/orc/orc.gd" id="1_orc"]
+[ext_resource type="Texture2D" path="res://assets/orc/Orc-Idle.png" id="2_idle"]
+[ext_resource type="Texture2D" path="res://assets/orc/Orc-Walk.png" id="3_walk"]
+[ext_resource type="Texture2D" path="res://assets/orc/Orc-Hurt.png" id="4_hurt"]
+[ext_resource type="Texture2D" path="res://characters/ground_shadow.png" id="5_shadow"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_idle")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_walk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hurt")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_idle"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+length = 0.2
+loop_mode = 0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrcSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orc"]
+_data = {
+"RESET": SubResource("Animation_idle"),
+"idle": SubResource("Animation_idle"),
+"walk": SubResource("Animation_walk"),
+"hurt": SubResource("Animation_hurt")
+}
+
+[node name="Orc" type="Node2D"]
+script = ExtResource("1_orc")
+
+[node name="GroundShadow" type="Sprite2D" parent="."]
+modulate = Color(0.898039, 0.878431, 0.831373, 1)
+z_index = -1
+z_as_relative = false
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_shadow")
+
+[node name="OrcSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_orc")
+animation = &"idle"
+offset = Vector2(0, -50)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+playback_default_blend_time = 0.2
+libraries = {
+"": SubResource("AnimationLibrary_orc")
+}

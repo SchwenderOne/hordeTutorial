@@ -1,0 +1,227 @@
+[gd_scene load_steps=5 format=3 uid="uid://dun1cpardk2xw"]
+
+[ext_resource type="Script" uid="uid://dsgxioo8wstff" path="res://game.gd" id="1_qclsr"]
+[ext_resource type="PackedScene" uid="uid://dsw8raqgacxsc" path="res://player.tscn" id="2_a7q7f"]
+[ext_resource type="PackedScene" uid="uid://c2qg1nuvfnd4q" path="res://trees/pine_tree.tscn" id="3_6h7ij"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5sny"]
+bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_bg"]
+bg_color = Color(0.0352941, 0.0470588, 0.0784314, 0.94)
+border_color = Color(0.278431, 0.760784, 1, 0.4)
+border_width = 2
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_left = 18
+corner_radius_bottom_right = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
+bg_color = Color(0.141176, 0.717647, 0.94902, 0.24)
+border_color = Color(0.141176, 0.717647, 0.94902, 0.9)
+border_width = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.180392, 0.886275, 1, 0.35)
+border_color = Color(0.180392, 0.886275, 1, 1)
+border_width = 2
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+
+[sub_resource type="Curve2D" id="Curve2D_cp6e5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1055, -697, 0, 0, 0, 0, 1057, -697, 0, 0, 0, 0, 1057, 671, 0, 0, 0, 0, -1055, 663, 0, 0, 0, 0, -1055, -689)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_qclsr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 50.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_a5sny")
+value = 100.0
+show_percentage = false
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+layer = 100
+pause_mode = 2
+
+[node name="Backdrop" type="ColorRect" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+custom_styles/panel = SubResource("StyleBoxFlat_pause_bg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+
+[node name="ContentVBox" type="VBoxContainer" parent="PauseMenu/Panel"]
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+margin_left = 24
+margin_top = 24
+margin_right = -24
+margin_bottom = -24
+custom_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="PauseMenu/Panel/ContentVBox"]
+horizontal_alignment = 1
+text = "PAUSED"
+theme_override_font_sizes/font_size = 46
+theme_override_font_colors/font_color = Color(0.627451, 0.901961, 1, 1)
+
+[node name="AccentLine" type="ColorRect" parent="PauseMenu/Panel/ContentVBox"]
+rect_min_size = Vector2(0, 4)
+color = Color(0.133333, 0.572549, 0.882353, 1)
+
+[node name="StatusLabel" type="RichTextLabel" parent="PauseMenu/Panel/ContentVBox"]
+bbcode_enabled = true
+rect_min_size = Vector2(0, 140)
+
+[node name="InfoLabel" type="Label" parent="PauseMenu/Panel/ContentVBox"]
+horizontal_alignment = 1
+text = "Press [M] to toggle this overlay. Take a breath before heading back in."
+theme_override_font_sizes/font_size = 14
+
+[node name="ButtonRow" type="HBoxContainer" parent="PauseMenu/Panel/ContentVBox"]
+custom_constants/separation = 12
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Panel/ContentVBox/ButtonRow"]
+text = "Resume (M)"
+rect_min_size = Vector2(140, 42)
+custom_styles/normal = SubResource("StyleBoxFlat_button_normal")
+custom_styles/hover = SubResource("StyleBoxFlat_button_hover")
+custom_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+
+[node name="SettingsButton" type="Button" parent="PauseMenu/Panel/ContentVBox/ButtonRow"]
+text = "View Options"
+rect_min_size = Vector2(140, 42)
+custom_styles/normal = SubResource("StyleBoxFlat_button_normal")
+custom_styles/hover = SubResource("StyleBoxFlat_button_hover")
+
+[node name="ExitButton" type="Button" parent="PauseMenu/Panel/ContentVBox/ButtonRow"]
+text = "Exit (Sample)"
+rect_min_size = Vector2(140, 42)
+custom_styles/normal = SubResource("StyleBoxFlat_button_normal")
+custom_styles/hover = SubResource("StyleBoxFlat_button_hover")
+
+[node name="Player" parent="." instance=ExtResource("2_a7q7f")]
+
+[node name="Path2D" type="Path2D" parent="Player"]
+curve = SubResource("Curve2D_cp6e5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-1055, -697)
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.439216)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -107.0
+offset_right = 358.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 124
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -32
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PineTree" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(66, 591)
+
+[node name="PineTree2" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(155, 643)
+
+[node name="PineTree3" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(-9.99997, 687)
+
+[node name="PineTree4" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(682, 254)
+
+[node name="PineTree5" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(829, 384)
+
+[node name="PineTree11" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(781, -296)
+
+[node name="PineTree6" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(-677, 313)
+
+[node name="PineTree7" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(-788, 370)
+
+[node name="PineTree8" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(-829, 229)
+
+[node name="PineTree9" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(-346, -355)
+
+[node name="PineTree10" parent="." instance=ExtResource("3_6h7ij")]
+position = Vector2(-573, -231)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
